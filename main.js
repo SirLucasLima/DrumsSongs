@@ -1,24 +1,39 @@
-function playSong (elementId) {
-    document.querySelector(elementId).play();
+function playSong (audioSelector) {
+    //audio selector - prop para selecionar a classname do audio
+    const element = document.querySelector(audioSelector);
+    
+    //if e else - para caso alguém use a function 'playSong' de maneira inapropriada
+    if  (element != null && element.localName === 'audio') {
+        element.play();
+    }
+    else {
+        console.log('Element is not found or invalid selector.')
+    }
 }
 
-const keyList = document.querySelectorAll('.tecla');
+//querySelectorAll('.key') - para selecionar todos com classname 'key'
+const keyList = document.querySelectorAll('.key');
 
-//para
+//contador para repedir o codigo até chegar no 'length/tamanho' máximo de intens 
 for (let counter = 0; counter < keyList.length; counter++) {
 
-    const tecla = keyList[counter];
-    const instrumento = tecla.classList[1];
-    const idAudio = `#som_${instrumento}`; //template string
+    const key = keyList[counter];
+    const instrumento = key.classList[1];
+    const idAudio = `#song_${instrumento}`; //template string
 
-    tecla.onclick = function () {
+    key.onclick = function () {
         playSong(idAudio);
     }
 
-    tecla.onkeydown = (e) => {
+    //para usar o app com teclas space e enter
+    key.onkeydown = (e) => {
         if (e.code === 'Space' || e.code === 'Enter') {
-            tecla.classList.add('active')
+            key.classList.add('active')
         }
+    }
+    
+    key.onkeyup = (e) => {
+        key.classList.remove('active')
     }
 
 }
