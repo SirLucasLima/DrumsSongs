@@ -14,7 +14,7 @@ function playSong (audioSelector) {
 //querySelectorAll('.key') - para selecionar todos com classname 'key'
 const keyList = document.querySelectorAll('.key');
 
-//contador para repedir o codigo até chegar no 'length/tamanho' máximo de intens 
+//contador para repetir o codigo até chegar no 'length/tamanho' máximo de intens 
 for (let counter = 0; counter < keyList.length; counter++) {
 
     const key = keyList[counter];
